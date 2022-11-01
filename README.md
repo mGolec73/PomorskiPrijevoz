@@ -8,29 +8,29 @@ Opis licencije: Ova licencija omogućava dijeljenje, modificiranje te korištenj
 
 ### Opis atributa entiteta u bazi podataka
 
-###### Entitet linija
-1.oznakaLinije (int) - jedinstvena brojčana oznaka pomorske linije
-2.tipLinije (varchar) - vrsta linije gledano obzirom na područje plovidbe (međunarodna ili lokalna)
-3.polazište (varchar) - polazišna luka 
-4.odredište (varchar) - odredišna luka
-5.stajališta (varchar) - ostale luke u kojima brodovi pristaju između polazišta i odredišta
-6.okružje (varchar) - geografsko područje u kojem brodovi plove (uglavnom vezano uz polazišnu luku)
-7.vrijemeVožnje (float) - vremnsko trajanje plovidbe u jednom smjeru iskazano u minutama
-8.cijena (int) - cijena vožnje za jednu osobu u sezonskom razdolju izražena u kunama
-9.brojPolazakaUDanu (int) - broj koliko puta svi brodovi zajedno plove s polazišne na odredišnu poziciju određenom linijom u jednom danu 
-10.dodatniSadržaj (varchar) - jednostavna da/ne vrijednost vezana uz postojanje dodatnog sadržaja prilikom plovidbe određenom linijom
-11.opis (varchar) - rečenicom opisana vrsta linije te otoci/gradovi između kojih se odvija plovidba
+#### Entitet linija
+1. oznakaLinije (int) - jedinstvena brojčana oznaka pomorske linije  
+2. tipLinije (varchar) - vrsta linije gledano obzirom na područje plovidbe (međunarodna ili lokalna)  
+3. polazište (varchar) - polazišna luka   
+4. odredište (varchar) - odredišna luka  
+5. stajališta (varchar) - ostale luke u kojima brodovi pristaju između polazišta i odredišta  
+6. okružje (varchar) - geografsko područje u kojem brodovi plove (uglavnom vezano uz polazišnu luku)  
+7. vrijemeVožnje (float) - vremnsko trajanje plovidbe u jednom smjeru iskazano u minutama  
+8. cijena (int) - cijena vožnje za jednu osobu u sezonskom razdolju izražena u kunama  
+9. brojPolazakaUDanu (int) - broj koliko puta svi brodovi zajedno plove s polazišne na odredišnu poziciju određenom linijom u jednom danu   
+10. dodatniSadržaj (varchar) - jednostavna da/ne vrijednost vezana uz postojanje dodatnog sadržaja prilikom plovidbe određenom linijom  
+11. opis (varchar) - rečenicom opisana vrsta linije te otoci/gradovi između kojih se odvija plovidba  
 
-##### Entitet brod
-1.nazivBroda (varchar) - jedinstveno ime broda
-2.vrstaBroda (varchar) - brodovi se dijele na katamarane i trajekte
-3.vlasnikBroda (varchar) - vlasnička tvrtka broda
-4.kapacitet (int) - brojčani kapacitet odraslih osoba za pojedini brod
+#### Entitet brod
+1. nazivBroda (varchar) - jedinstveno ime broda  
+2. vrstaBroda (varchar) - brodovi se dijele na katamarane i trajekte  
+3. vlasnikBroda (varchar) - vlasnička tvrtka broda  
+4. kapacitet (int) - brojčani kapacitet odraslih osoba za pojedini brod  
 
-##### Entitet prevozi
-1.oznakaLinije (int) - strani ključ preuzet iz entiteta linija
-2.nazivBroda (varchar) - strani ključ preuzet iz eniteta brod
-Ova tablica predstavlja vezu izneđu brodova koji putuju na pojedinim linijama. Na određenoj liniji može putovati više brodova.
+#### Entitet prevozi
+1. oznakaLinije (int) - strani ključ preuzet iz entiteta linija  
+2. nazivBroda (varchar) - strani ključ preuzet iz eniteta brod  
+Ova tablica predstavlja vezu izneđu brodova koji putuju na pojedinim linijama. Na određenoj liniji može putovati više brodova.  
 
 #### Ostale informacije
 Podaci su dostupni u formatima JSON i cvs koji su pogodni za stojnu obradu te su lako čitljivi i ljudima. Unutar repositorija uz same podatke nalazi i dump baze podataka te tekstni dokument na koji su način podaci izvedeni iz baze podataka u pojedini format.
