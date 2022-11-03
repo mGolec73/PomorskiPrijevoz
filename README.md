@@ -1,11 +1,11 @@
 # PomorskiPrijevoz
 Podaci o državnom pomorskom prometu, linijama i brodovima koji prevoze do određenih destinacija dostupni u formatima **JSON** i **csv**.  
-Autor: Mateja Golec  
-Jezik: hrvatski  
-Verzija: 1.0
-Datum objave: 2.11.2022.
-Licencija: GNU General Public License v3.0  
-Opis licencije: Ova licencija omogućava dijeljenje, modificiranje te korištenje podataka u sve svrhe, čak i komercijalne pod istim uvjetima uz daljnje korištenje licencije i navođenje izvora te zadržavanje autorskih prava.  
+**Autor**: Mateja Golec  
+**Jezik**: hrvatski  
+**Verzija**: 1.0
+**Datum objave**: 2.11.2022.
+**Licencija**: GNU General Public License v3.0  
+**Opis licencije**: Ova licencija omogućava dijeljenje, modificiranje te korištenje podataka u sve svrhe, čak i komercijalne pod istim uvjetima uz daljnje korištenje licencije i navođenje izvora te zadržavanje autorskih prava.  
 
 ### Opis atributa entiteta u bazi podataka
 
