@@ -13,9 +13,9 @@ Opis licencije: Ova licencija omogućava dijeljenje, modificiranje te korištenj
 2. tipLinije (varchar) - vrsta linije gledano obzirom na područje plovidbe (međunarodna ili lokalna)  
 3. polazište (varchar) - polazišna luka   
 4. odredište (varchar) - odredišna luka  
-5. stajališta (varchar) - ostale luke u kojima brodovi pristaju između polazišta i odredišta  
+5. stajališta (varchar) - ostale luke u kojima brodovi pristaju između polazišta i odredišta, pojedine linije su izravne i nemaju stajališta
 6. okružje (varchar) - geografsko područje u kojem brodovi plove (uglavnom vezano uz polazišnu luku)  
-7. vrijemeVožnje (float) - vremnsko trajanje plovidbe u jednom smjeru iskazano u minutama  
+7. vrijemeVožnje (float) - vremensko trajanje plovidbe u jednom smjeru iskazano u minutama  
 8. cijena (int) - cijena vožnje za jednu osobu u sezonskom razdolju izražena u kunama  
 9. brojPolazakaUDanu (int) - broj koliko puta svi brodovi zajedno plove s polazišne na odredišnu poziciju određenom linijom u jednom danu   
 10. dodatniSadržaj (varchar) - jednostavna da/ne vrijednost vezana uz postojanje dodatnog sadržaja prilikom plovidbe određenom linijom  
@@ -30,7 +30,7 @@ Opis licencije: Ova licencija omogućava dijeljenje, modificiranje te korištenj
 #### Entitet prevozi
 1. oznakaLinije (int) - strani ključ preuzet iz entiteta linija  
 2. nazivBroda (varchar) - strani ključ preuzet iz eniteta brod  
-Ova tablica predstavlja vezu izneđu brodova koji putuju na pojedinim linijama. Na određenoj liniji može putovati više brodova.  
+Ova tablica predstavlja vezu između brodova koji putuju na pojedinim linijama. Na određenoj liniji može putovati više brodova.  
 
 #### Ostale informacije
-Podaci su dostupni u formatima JSON i csv koji su pogodni za stojnu obradu te su lako čitljivi i ljudima. Unutar repositorija uz same podatke nalazi i dump baze podataka te tekstni dokument na koji su način podaci izvedeni iz baze podataka u pojedini format.
+Podaci su dostupni u formatima JSON i csv koji su pogodni za stojnu obradu te su lako čitljivi i ljudima. Unutar repositorija uz same podatke nalazi i dump baze podataka. Podaci i informacije preuzeti su sa stranice https://www.jadrolinija.hr/.
