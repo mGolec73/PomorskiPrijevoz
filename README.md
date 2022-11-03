@@ -1,5 +1,5 @@
 # PomorskiPrijevoz
-Podaci o državmom pomorskom prometu, linijama i brodovima koji prevoze do određenih destinacija dostupni u formatima JSON i csv.  
+Podaci o državnom pomorskom prometu, linijama i brodovima koji prevoze do određenih destinacija dostupni u formatima JSON i csv.  
 Autor: Mateja Golec  
 Jezik: hrvatski  
 Verzija: 1.0  
