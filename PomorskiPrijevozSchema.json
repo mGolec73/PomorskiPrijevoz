@@ -1,0 +1,211 @@
+{
+	"$schema": "https://json-schema.org/draft/2019-09/schema",
+	"$id": "http://PomorskiPrijevoz.hr/PomorskiPrijevoz.json",
+	"type": "array",
+	"default": {},
+	"title": "PomorskiPrijevoz",
+	"description": "Popis pomorskih linija za otvoreno računarstvo.",
+	"items": {
+		"type": "object",
+		"default": {},
+		"title": "Linije",
+		"description": "Objekt koji opisuje pojedinu liniju",
+		"required": [
+			"oznakalinije",
+			"tiplinije",
+			"polazište",
+			"odredište",
+			"stajališta",
+			"okružje",
+			"vrijemevožnje",
+			"cijena",
+			"brojpolazakaudanu",
+			"dodatansadržaj",
+			"opis",
+			"brodovi"
+		],
+		"properties": {
+			"oznakalinije": {
+				"type": "integer",
+				"default": 0,
+				"title": "oznakalinije",
+				"description": "jedinstvena brojčana oznaka pomorske linije",
+				"examples": [
+					9604
+				]
+			},
+			"tiplinije": {
+				"type": "string",
+				"default": "",
+				"title": "tiplinije",
+				"description": "vrsta linije gledano obzirom na područje plovidbe (međunarodna ili lokalna)",
+				"examples": [
+					"lokalna"
+				]
+			},
+			"polazište": {
+				"type": "string",
+				"default": "",
+				"title": "polazište",
+				"description": "polazišna luka",
+				"examples": [
+					"Split"
+				]
+			},
+			"odredište": {
+				"type": "string",
+				"default": "",
+				"title": "odredište",
+				"description": "odredišna luka",
+				"examples": [
+					"Ubli"
+				]
+			},
+			"stajališta": {
+				"type": "string",
+				"default": "",
+				"title": "stajališta",
+				"description": "ostale luke u kojima brodovi pristaju između polazišta i odredišta, pojedine linije su izravne i nemaju stajališta",
+				"examples": [
+					"Vela Luka, Hvar"
+				]
+			},
+			"okružje": {
+				"type": "string",
+				"default": "",
+				"title": "okružje",
+				"description": "geografsko područje u kojem brodovi plove (uglavnom vezano uz polazišnu luku)",
+				"examples": [
+					"Splitsko"
+				]
+			},
+			"vrijemevožnje": {
+				"type": "float",
+				"default": 0,
+				"title": "vrijemevožnje",
+				"description": "vremensko trajanje plovidbe u jednom smjeru iskazano u minutama",
+				"examples": [
+					185
+				]
+			},
+			"cijena": {
+				"type": "integer",
+				"default": "",
+				"title": "cijena",
+				"description": "cijena vožnje za jednu osobu u sezonskom razdolju izražena u kunama",
+				"examples": [
+					"78"
+				]
+			},
+			"brojpolazakaudanu": {
+				"type": "integer",
+				"default": 0,
+				"title": "brojpolazakaudanu",
+				"description": "broj koliko puta svi brodovi zajedno plove s polazišne na odredišnu poziciju određenom linijom u jednom danu",
+				"examples": [
+					6
+				]
+			},
+			"dodatansadržaj": {
+				"type": "string",
+				"default": "",
+				"title": "dodatansadržaj",
+				"description": "jednostavna da/ne vrijednost vezana uz postojanje dodatnog sadržaja prilikom plovidbe određenom linijom",
+				"examples": [
+					"da"
+				]
+			},
+			"opis": {
+				"type": "string",
+				"default": "",
+				"title": "opis",
+				"description": "rečenicom opisana vrsta linije te otoci/gradovi između kojih se odvija plovidba",
+				"examples": [
+					"brzobrodska linija koja polazi iz Splita na otoke Hvar,Korčulu i Lastovo"
+				]
+			},
+			"brodovi": {
+				"type": "array",
+				"default": [],
+				"title": "brodovi",
+				"description": "polje brodova koji voze na pojedinoj liniji",
+				"items": {
+					"type": "object",
+					"title": "brodovi",
+					"required": [
+						"nazivbroda",
+						"vrstabroda",
+						"vlasnikbroda",
+						"kapacitet"
+					],
+					"properties": {
+						"nazivbroda": {
+							"type": "string",
+							"title": "nazivbroda",
+							"description": "jedinstveno ime broda",
+							"examples": [
+								"Adriana",
+								"Judita"
+							]
+						},
+						"vrstabroda": {
+							"type": "string",
+							"title": "vrstabroda",
+							"description": "brodovi se dijele na katamarane i trajekte",
+							"examples": [
+								"katamaran"
+							]
+						},
+						"vlasnikbroda": {
+							"type": "string",
+							"title": "vlasnikbroda",
+							"description": "vlasnička tvrtka broda",
+							"examples": [
+								"Jadrolinija"
+							]
+						},
+						"kapacitet": {
+							"type": "integer",
+							"title": "kapacitet",
+							"description": "brojčani kapacitet odraslih osoba za pojedini brod",
+							"examples": [
+								356,
+								316
+							]
+						}
+					},
+					"examples": [
+						{
+							"nazivbroda": "Adriana",
+							"vrstabroda": "katamaran",
+							"vlasnikbroda": "Jadrolinija",
+							"kapacitet": 356
+						},
+						{
+							"nazivbroda": "Judita",
+							"vrstabroda": "katamaran",
+							"vlasnikbroda": "Jadrolinija",
+							"kapacitet": 316
+						}
+					]
+				},
+				"examples": [
+					[
+						{
+							"nazivbroda": "Adriana",
+							"vrstabroda": "katamaran",
+							"vlasnikbroda": "Jadrolinija",
+							"kapacitet": 356
+						},
+						{
+							"nazivbroda": "Judita",
+							"vrstabroda": "katamaran",
+							"vlasnikbroda": "Jadrolinija",
+							"kapacitet": 316
+						}
+					]
+				]
+			}
+		}
+	}
+}
