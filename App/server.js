@@ -1,16 +1,16 @@
 
-const bodyParser = require('body-parser');
 const express = require('express'); //Line 1
+var bodyParser = require('body-parser')
 const app = express(); //Line 2
 const port = process.env.PORT || 5000; //Line 3
 const pg = require('pg')
 const session = require('express-session')
 const db = require('./db')
 const pgSession = require('connect-pg-simple')(session)
-const fs = require('fs');
-//import bodyParser from 'body-parser';
-//app.use(bodyParser.json());
-var jsonParser = bodyParser.json();
+const fs=require('fs')
+const routes = require('./routes/routes');
+const AppError = require("./utils/AppError");
+var jsonParser = bodyParser.json()
 
 
 
@@ -21,41 +21,41 @@ app.listen(port, () => console.log(`Listening on port ${port}`)); //Line 6
 //Line 11
 
 //middleware - dekodiranje parametara
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(session({  //inicijalizira express-session middleware
     store: new pgSession({
         pool: db.pool
     }),
     resave: false,
-    secret: "linije", //služi za hash
+    secret: "Pomorski", //služi za hash
     saveUninitialized: true
 }))
 
-
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header("Access-Control-Allow-Credentials", "true");
-//     res.header('Access-Control-Allow-Methods', "GET,HEAD,OPTIONS,POST,PUT");
-//     res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-//     next();
-//   });
+app.use('/api',routes);
 
 
+app.all('*',(req,res,next)=>{
+    const err = new AppError(`Requested URL ${req.path} not found!`, 404, `Not found`);
+    next(err);
+})
+app.use((err,req,res,next)=>{
+    const statusCode = err.statusCode || 500;
+    const status1 = err.status || "Internal server error";
+    const wrapper = {  status:status1,
+                       message:err.message,
+                       response:null};
+    res.status(statusCode).send(wrapper);
+})
 
-
-
-app.get('/express_backend', (req, res) => { //Line 9
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
-  }); 
 
 app.get('/getLinija',async (req, res) => { //Line 9
     
     const sqlQuery = `SELECT * FROM linija;`;
     //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
     try {
-        const resultLine = (await db.query(sqlQuery, [])).rows;
-        res.send({linije: resultLine});
+        const rez = (await db.query(sqlQuery, [])).rows;
+        res.send({linije: rez});
     } catch (err) {
         console.log(err);
     } 
@@ -66,23 +66,25 @@ app.get('/getBrod',async (req, res) => { //Line 9
     const sqlQuery = `SELECT * FROM brod;`;
     //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
     try {
-        const resultLine = (await db.query(sqlQuery, [])).rows;
-        res.send({linije: resultLine});
+        const rez = (await db.query(sqlQuery, [])).rows;
+        res.send({brodovi: rez});
     } catch (err) {
         console.log(err);
     } 
 });
-app.get('/getLinijaWithBoats',async (req, res) => { //Line 9
+app.get('/getLinije',async (req, res) => { //Line 9
     
-    const sqlQuery = `SELECT * FROM linija natural join prevozi natural join brod`;
+    const sqlQuery = `SELECT * from linija natural join prevozi natural join brod;`;
     //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
     try {
-        const resultLine = (await db.query(sqlQuery, [])).rows;
-        res.send({linije: resultLine});
+        const rez = (await db.query(sqlQuery, [])).rows;
+        res.send({linije: rez});
     } catch (err) {
         console.log(err);
     } 
 });
+
+
 app.post("/createCSVFile",jsonParser, async (req, res) =>{
     
    
@@ -95,9 +97,9 @@ app.post("/createCSVFile",jsonParser, async (req, res) =>{
         counter++;
         string+= counter===keys_num ? key : key +","
     }
-    fs.writeFile('./client/public/test2.csv', string + "\n", { flag: 'w+' }, err => {
+    fs.writeFile('./client/public/test2.txt', string + "\n", { flag: 'w+' }, err => {
         if (err) {
-          console.error(err); 
+          console.error(err);
         }
         // file written successfully
       });
@@ -110,7 +112,7 @@ app.post("/createCSVFile",jsonParser, async (req, res) =>{
                 counter++; 
                 string+= counter===keys_num ? arrayItem[key] : (arrayItem[key] + ",")}
                 )
-        fs.writeFile('./client/public/test2.csv', string + "\n", { flag: 'a+' }, err => {
+        fs.writeFile('./client/public/test2.txt', string + "\n", { flag: 'a+' }, err => {
             if (err) {
               console.error(err);
             }
@@ -173,7 +175,7 @@ app.post("/createJSONFile",jsonParser, async (req, res) =>{
     outputArray.push(outputObj)
 
     let string=JSON.stringify({linije: outputArray})
-    fs.writeFile('./client/public/test3.json', string + "\n", { flag: 'w+' }, err => {
+    fs.writeFile('./client/public/test3.txt', string + "\n", { flag: 'w+' }, err => {
         if (err) {
           console.error(err);
         }
@@ -181,3 +183,5 @@ app.post("/createJSONFile",jsonParser, async (req, res) =>{
      res.send(filterArray)
 
 })
+
+  
