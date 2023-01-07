@@ -2,14 +2,17 @@ import React from "react";
 import styled from "styled-components";
 
 
+
 const Home = (props) => {
-  
+
   return (
     <>
       <CustomDiv>
       <CustomDiv2>
       <h1 id="pomorskiprijevoz">PomorskiPrijevoz</h1>
       <a href="/datatable"> Tablica</a>
+      <a id="exportCSV" href="./linijeHome.csv" download="linije" target="_blank"> Download CSV </a>
+      <a id="exportJSON" href="./linijeHome.json" download="linije" target="_blank">Download JSON </a>
       </CustomDiv2>
       <div>
         <p>Podaci o državnom pomorskom prometu, linijama i brodovima koji prevoze do određenih destinacija dostupni u formatima JSON i csv.</p>

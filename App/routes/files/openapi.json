@@ -1,3 +1,4 @@
+
 {
   "openapi": "1.0.0",
   "info": {
@@ -324,3 +325,331 @@
     }
   }
 }
+
+{
+  "openapi": "1.0.0",
+  "info": {
+    "title": "Pomorski prijevoz",
+    "contact": {
+      "name": "Pomorski Prijevoz API Support",
+      "url": "#/api/support",
+      "email": "mateja.golec@gmail.com"
+    },
+    "licence": {
+      "name": "GNU General Public License v3.0",
+      "url": "https://github.com/mGolec73/PomorskiPrijevoz/blob/main/LICENCE"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/getAll": {
+      "get": {
+        "summary": "Get all resources from collection",
+        "description": "Returns whole collection",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the resource",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetched all lines with boats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#PomorskiPrijevozSchema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/getAllBoats": {
+      "get": {
+        "summary": "Get all boats from collection",
+        "description": "Returns whole boats collection",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the resource",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetched all lines with boats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "PomorskiPrijevozSchema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/getAllBoatsWithLineId": {
+      "get": {
+        "summary": "Get all boats with lines id's from collection",
+        "description": "Returns whole boats and line id's collection",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the resource",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetched all lines with boats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "PomorskiPrijevozSchema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/getOne/:id": {
+      "get": {
+        "summary": "Get resources from collection by id",
+        "description": "Returns a single collection line resource",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the resource",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetched one line with specific id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "PomorskiPrijevozSchema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/getOneBoat/:id": {
+      "get": {
+        "summary": "Get resource from collection by id",
+        "description": "Returns a single collection boat resource",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the resource",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetched one boat with specific id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#PomorskiPrijevozSchema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/delete/:id": {
+      "post": {
+        "summary": "Delete resource from collection",
+        "description": "Deleting one resource from collection",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the resource",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ]
+      },
+      "responses": {
+        "200": {
+          "description": "Successfully deleted line",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#PomorskiPrijevozSchema.json"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid request"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    }
+  },
+  "/api/addNew": {
+    "post": {
+      "summary": "Add new resource to collection",
+      "description": "Adding new resource to collection",
+      "requestBody": {
+        "required": "true",
+        "content": "application/json",
+        "schema": "#PomorskiPrijevoz.json"
+      }
+    },
+    "responses": {
+      "201": {
+        "description": "Successfully created new line",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "PomorskiPrijevozSchema.json"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid request"
+      },
+      "500": {
+        "description": "Internal Server Error"
+      }
+    }
+  },
+  "/api/update/:id": {
+    "put": {
+      "summary": "Update resource in collection",
+      "description": "Updating resource in collection",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "ID of the resource",
+          "required": true,
+          "type": "integer",
+          "format": "int64"
+        }
+      ],
+      "requestBody": {
+        "required": "true",
+        "content": "application/json",
+        "schema": {
+          "$ref": "#PomorskiPrijevozSchema.json"
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Successfully updated line",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "PomorskiPrijevozSchema.json"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid request"
+      },
+      "500": {
+        "description": "Internal Server Error"
+      }
+    }
+  },
+  "/api/getOpenAPi": {
+    "put": {
+      "summary": "Fetch openApi file",
+      "description": "Fetching openApi file resource",
+      "produces": ["application/json"],
+
+      "responses": {
+        "200": {
+          "description": "Successfully fetched data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "OpenApi.json"
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    }
+  }
+}
+

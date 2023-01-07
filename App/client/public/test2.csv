@@ -1,0 +1,17 @@
+nazivbroda,oznakalinije,tiplinije,cijena,dodatansadržaj,okružje,vrijemevožnje,odredište,polazište,opis,stajališta,brojpolazakaudanu,vrstabroda,vlasnikbroda,kapacitet
+Judita,9604,lokalna,78,da,Splitsko,185,Ubli,Split,brzobrodska linija koja polazi iz Splita na otoke Hvar,Korčulu i Lastovo,Vela Luka, Hvar,6,katamaran,Jadrolinija,316
+Adriana,9604,lokalna,78,da,Splitsko,185,Ubli,Split,brzobrodska linija koja polazi iz Splita na otoke Hvar,Korčulu i Lastovo,Vela Luka, Hvar,6,katamaran,Jadrolinija,356
+Karolina,9603,lokalna,63,da,Splitsko,90,Jelsa,Split,brzobrodska linija koja polazi iz Splita na otoke Brač i hvar,Bol,4,katamaran,Jadrolinija,316
+Laslovo,632,lokalna,24,ne,Splitsko,35,Sućuraj,Drvenik,trajektna linija koja polazi iz Drvenika na otok Hvar,,11,trajekt,Jadrolinija,150
+Ston,632,lokalna,24,ne,Splitsko,35,Sućuraj,Drvenik,trajektna linija koja polazi iz Drvenika na otok Hvar,,11,trajekt,Jadrolinija,150
+Tin Ujević,635,lokalna,55,da,Splitsko,120,Stari Grad,Split,trajektna linija koja polazi iz Splita na otok Hvar,,6,trajekt,Jadrolinija,1000
+Hanibal Lucić,832,lokalna,36,ne,Dubrovačko,45,Sobra,Prapratno,trajektna linija koja polazi iz Pelješca na otok Mljet,,4,trajekt,Jadrolinija,360
+Dubrovnik,54,međunarodna,287,da,Durovačko,600,Bari,Dubrovnik,međunarodna linija koja polazi iz Dubrovnika za Bari,,1,trajekt,Jadrolinija,1757
+Mljet,332,lokalna,26,ne,Riječko,25,Merag,Valbiska,trajektna linija koja polazi s otoka Krka na otok Cres,,13,trajekt,Jadrolinija,616
+Mljet,338,lokalna,45,da,Riječko,80,Lopar,Valbiska,trajektna linija koja polazi s otoka Krka na otok Rab,,4,trajekt,Jadrolinija,616
+Bol,338,lokalna,45,da,Riječko,80,Lopar,Valbiska,trajektna linija koja polazi s otoka Krka na otok Rab,,4,trajekt,Jadrolinija,600
+Cres,338,lokalna,45,da,Riječko,80,Lopar,Valbiska,trajektna linija koja polazi s otoka Krka na otok Rab,,4,trajekt,Jadrolinija,600
+Marko Polo1,60,međunarodna,400,da,Splitsko,570,Ancona,Split,međunarodna linija koja polazi iz Splita za Anconu,,1,trajekt,Jadrolinija,1647
+Faros,432,lokalna,22,ne,Zadarsko,20,Tkon,Biograd,trajektna linija koja polazi iz Biograda na otok Pašman,,13,trajekt,Jadrolinija,650
+Olea,9811,lokalna,280,da,Dubrovačko,180,Split,Dubrovnik,brzobrodska linija koja polazi iz Dubrovnika na otoke Hvar,Korčulu i Brač,Vela Luka,Hvar,Bol,8,katamaran,Jadrolinija,218
+Petar Hektorović,635,lokalna,55,da,Splitsko,120,Stari Grad,Split,trajektna linija koja polazi iz Splita na otok Hvar,,6,trajekt,Jadrolinija,1080

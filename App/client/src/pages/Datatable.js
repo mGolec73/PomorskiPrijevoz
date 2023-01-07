@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { useState, useEffect } from "react";
-import { getLinija, getLinijaWithBoats, exportCSV, exportJSON } from "../utils/fetchFunctions";
+import { getLinijaWithBoats, exportCSV, exportJSON } from "../utils/fetchFunctions";
 
 
 import DataTable from 'react-data-table-component';

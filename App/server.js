@@ -7,33 +7,12 @@ const pg = require('pg')
 const session = require('express-session')
 const db = require('./db')
 const pgSession = require('connect-pg-simple')(session)
-const fs=require('fs')
-const routes = require('./routes/routes');
+const fs = require('fs');
 const AppError = require("./utils/AppError");
-var jsonParser = bodyParser.json()
-
-
-
-// This displays message that the server running and listening to specified port
-app.listen(port, () => console.log(`Listening on port ${port}`)); //Line 6
-
-// create a GET route
-//Line 11
-
-//middleware - dekodiranje parametara
-app.use(express.urlencoded({ extended: true }));
-
-app.use(session({  //inicijalizira express-session middleware
-    store: new pgSession({
-        pool: db.pool
-    }),
-    resave: false,
-    secret: "Pomorski", //služi za hash
-    saveUninitialized: true
-}))
+var jsonParser = bodyParser.json();
+const routes = require('./routes/routes');
 
 app.use('/api',routes);
-
 
 app.all('*',(req,res,next)=>{
     const err = new AppError(`Requested URL ${req.path} not found!`, 404, `Not found`);
@@ -46,6 +25,76 @@ app.use((err,req,res,next)=>{
                        message:err.message,
                        response:null};
     res.status(statusCode).send(wrapper);
+})
+
+
+
+app.listen(port, () => console.log(`Listening on port ${port}`)); 
+
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+
+
+app.use(session({  
+    store: new pgSession({
+        pool: db.pool
+    }),
+    resave: false,
+    secret: "linije", 
+    saveUninitialized: true
+}))
+
+
+app.use((req, res, next) => {
+     res.header('Access-Control-Allow-Origin', '*');
+     res.header("Access-Control-Allow-Credentials", "true");
+     res.header('Access-Control-Allow-Methods', "GET,HEAD,OPTIONS,POST,PUT");
+     res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+     next();
+   });
+
+
+app.get('/refresh', async (req,res)=> {
+   const CSVsql = `COPY (
+    select linija.oznakalinije, linija.tiplinije, linija.polazište, linija.odredište, linija.stajališta,
+            linija.okružje, linija.vrijemevožnje, linija.cijena, linija.brojpolazakaudanu, linija.dodatansadržaj,
+            linija.opis, brod.* as brodovi
+    from linija natural join prevozi natural join brod)
+    TO 'C:/Users/Marina/Desktop/OR/labosiOtvoreno/otvorenoGit/PomorskiPrijevoz/App/client/public/linijeHome.csv' WITH DELIMITER ',' CSV HEADER;`
+
+    const JSONsql = `
+    drop view if exists putuju cascade;
+    create view putuju as
+    select * from brod natural join prevozi;
+    create view PomorskiPrijevoz as 
+    select linija.oznakalinije, linija.tiplinije, linija.polazište, linija.odredište, linija.stajališta,
+            linija.okružje, linija.vrijemevožnje, linija.cijena, linija.brojpolazakaudanu, linija.dodatansadržaj,
+            linija.opis, 
+            (select json_agg(row_to_json(brod))
+                            from brod natural join putuju 
+                             where linija.oznakalinije = putuju.oznakalinije
+                     group by oznakalinije) as brodovi
+    from linija;
+    copy (select json_agg(row_to_json(PomorskiPrijevoz))
+          from PomorskiPrijevoz)
+    to 'C:/Users/Marina/Desktop/OR/labosiOtvoreno/otvorenoGit/PomorskiPrijevoz/App/client/public/linijeHome.json'`
+
+    try{
+        const rez1 = (await db.query(CSVsql,[])).rows;
+        const rez2 = (await db.query(JSONsql,[])).rows;
+        const wrapper = {
+            status: "OK",
+            message:"Refreshed CSV and JSON"
+        }
+        res.status(200).send(wrapper);
+    } catch(err) {
+        console.log(err)
+    }
+    
+    
+    
 })
 
 
@@ -107,7 +156,7 @@ app.post("/createCSVFile",jsonParser, async (req, res) =>{
     for(let arrayItem of filterArray){
         counter=0;
 
-        arrayKeys.forEach(
+        arrayKeys.forEach( 
             (key)=>{ 
                 counter++; 
                 string+= counter===keys_num ? arrayItem[key] : (arrayItem[key] + ",")}
