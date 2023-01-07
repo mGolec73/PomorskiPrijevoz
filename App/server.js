@@ -1,18 +1,25 @@
 
-const bodyParser = require('body-parser');
 const express = require('express'); //Line 1
+var bodyParser = require('body-parser')
 const app = express(); //Line 2
 const port = process.env.PORT || 5000; //Line 3
 const pg = require('pg')
 const session = require('express-session')
 const db = require('./db')
 const pgSession = require('connect-pg-simple')(session)
+<<<<<<< HEAD
 const fs = require('fs');
 const AppError = require("./utils/AppError");
 var jsonParser = bodyParser.json();
 const routes = require('./routes/routes');
 
 app.use('/api',routes);
+=======
+const fs=require('fs')
+const routes = require('./routes/routes');
+const AppError = require("./utils/AppError");
+var jsonParser = bodyParser.json()
+>>>>>>> 0e827af1772040da18d0698719caf833f9af65e3
 
 
 app.all('*',(req,res,next)=>{
@@ -32,13 +39,19 @@ app.use((err,req,res,next)=>{
 app.listen(port, () => console.log(`Listening on port ${port}`)); 
 
 
+<<<<<<< HEAD
 app.use(bodyParser.urlencoded({ extended: true }));
+=======
+//middleware - dekodiranje parametara
+app.use(express.urlencoded({ extended: true }));
+>>>>>>> 0e827af1772040da18d0698719caf833f9af65e3
 
 app.use(session({  
     store: new pgSession({
         pool: db.pool
     }),
     resave: false,
+<<<<<<< HEAD
     secret: "linije", 
     saveUninitialized: true
 }))
@@ -51,10 +64,30 @@ app.use((req, res, next) => {
      res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
      next();
    });
+=======
+    secret: "Pomorski", //služi za hash
+    saveUninitialized: true
+}))
+
+app.use('/api',routes);
+>>>>>>> 0e827af1772040da18d0698719caf833f9af65e3
 
 
+app.all('*',(req,res,next)=>{
+    const err = new AppError(`Requested URL ${req.path} not found!`, 404, `Not found`);
+    next(err);
+})
+app.use((err,req,res,next)=>{
+    const statusCode = err.statusCode || 500;
+    const status1 = err.status || "Internal server error";
+    const wrapper = {  status:status1,
+                       message:err.message,
+                       response:null};
+    res.status(statusCode).send(wrapper);
+})
 
 
+<<<<<<< HEAD
 
 app.get('/express_backend', (req, res) => { //Line 9
     res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
@@ -101,13 +134,15 @@ app.get('/refresh', async (req,res)=> {
     
 })
 
+=======
+>>>>>>> 0e827af1772040da18d0698719caf833f9af65e3
 app.get('/getLinija',async (req, res) => { //Line 9
     
     const sqlQuery = `SELECT * FROM linija;`;
     //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
     try {
-        const resultLine = (await db.query(sqlQuery, [])).rows;
-        res.send({linije: resultLine});
+        const rez = (await db.query(sqlQuery, [])).rows;
+        res.send({linije: rez});
     } catch (err) {
         console.log(err);
     } 
@@ -118,23 +153,25 @@ app.get('/getBrod',async (req, res) => { //Line 9
     const sqlQuery = `SELECT * FROM brod;`;
     //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
     try {
-        const resultLine = (await db.query(sqlQuery, [])).rows;
-        res.send({linije: resultLine});
+        const rez = (await db.query(sqlQuery, [])).rows;
+        res.send({brodovi: rez});
     } catch (err) {
         console.log(err);
     } 
 });
-app.get('/getLinijaWithBoats',async (req, res) => { //Line 9
+app.get('/getLinije',async (req, res) => { //Line 9
     
-    const sqlQuery = `SELECT * FROM linija natural join prevozi natural join brod`;
+    const sqlQuery = `SELECT * from linija natural join prevozi natural join brod;`;
     //res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
     try {
-        const resultLine = (await db.query(sqlQuery, [])).rows;
-        res.send({linije: resultLine});
+        const rez = (await db.query(sqlQuery, [])).rows;
+        res.send({linije: rez});
     } catch (err) {
         console.log(err);
     } 
 });
+
+
 app.post("/createCSVFile",jsonParser, async (req, res) =>{
     
    
@@ -147,9 +184,9 @@ app.post("/createCSVFile",jsonParser, async (req, res) =>{
         counter++;
         string+= counter===keys_num ? key : key +","
     }
-    fs.writeFile('./client/public/test2.csv', string + "\n", { flag: 'w+' }, err => {
+    fs.writeFile('./client/public/test2.txt', string + "\n", { flag: 'w+' }, err => {
         if (err) {
-          console.error(err); 
+          console.error(err);
         }
         // file written successfully
       });
@@ -162,7 +199,7 @@ app.post("/createCSVFile",jsonParser, async (req, res) =>{
                 counter++; 
                 string+= counter===keys_num ? arrayItem[key] : (arrayItem[key] + ",")}
                 )
-        fs.writeFile('./client/public/test2.csv', string + "\n", { flag: 'a+' }, err => {
+        fs.writeFile('./client/public/test2.txt', string + "\n", { flag: 'a+' }, err => {
             if (err) {
               console.error(err);
             }
@@ -225,7 +262,7 @@ app.post("/createJSONFile",jsonParser, async (req, res) =>{
     outputArray.push(outputObj)
 
     let string=JSON.stringify({linije: outputArray})
-    fs.writeFile('./client/public/test3.json', string + "\n", { flag: 'w+' }, err => {
+    fs.writeFile('./client/public/test3.txt', string + "\n", { flag: 'w+' }, err => {
         if (err) {
           console.error(err);
         }
@@ -233,3 +270,5 @@ app.post("/createJSONFile",jsonParser, async (req, res) =>{
      res.send(filterArray)
 
 })
+
+  
