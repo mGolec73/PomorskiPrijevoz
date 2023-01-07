@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 const express = require('express');
 const db = require('../db')
 const router = express.Router();
@@ -445,8 +445,4 @@ router.delete('/delete/:id',jsonParser,async (req,res,next)=>{
   } 
 })
 
-
-
-
->>>>>>> 0e827af1772040da18d0698719caf833f9af65e3
 module.exports = router;

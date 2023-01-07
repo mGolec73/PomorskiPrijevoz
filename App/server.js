@@ -7,20 +7,12 @@ const pg = require('pg')
 const session = require('express-session')
 const db = require('./db')
 const pgSession = require('connect-pg-simple')(session)
-<<<<<<< HEAD
 const fs = require('fs');
 const AppError = require("./utils/AppError");
 var jsonParser = bodyParser.json();
 const routes = require('./routes/routes');
 
 app.use('/api',routes);
-=======
-const fs=require('fs')
-const routes = require('./routes/routes');
-const AppError = require("./utils/AppError");
-var jsonParser = bodyParser.json()
->>>>>>> 0e827af1772040da18d0698719caf833f9af65e3
-
 
 app.all('*',(req,res,next)=>{
     const err = new AppError(`Requested URL ${req.path} not found!`, 404, `Not found`);
@@ -36,22 +28,20 @@ app.use((err,req,res,next)=>{
 })
 
 
+
 app.listen(port, () => console.log(`Listening on port ${port}`)); 
 
 
-<<<<<<< HEAD
+
 app.use(bodyParser.urlencoded({ extended: true }));
-=======
-//middleware - dekodiranje parametara
 app.use(express.urlencoded({ extended: true }));
->>>>>>> 0e827af1772040da18d0698719caf833f9af65e3
+
 
 app.use(session({  
     store: new pgSession({
         pool: db.pool
     }),
     resave: false,
-<<<<<<< HEAD
     secret: "linije", 
     saveUninitialized: true
 }))
@@ -64,34 +54,7 @@ app.use((req, res, next) => {
      res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
      next();
    });
-=======
-    secret: "Pomorski", //služi za hash
-    saveUninitialized: true
-}))
 
-app.use('/api',routes);
->>>>>>> 0e827af1772040da18d0698719caf833f9af65e3
-
-
-app.all('*',(req,res,next)=>{
-    const err = new AppError(`Requested URL ${req.path} not found!`, 404, `Not found`);
-    next(err);
-})
-app.use((err,req,res,next)=>{
-    const statusCode = err.statusCode || 500;
-    const status1 = err.status || "Internal server error";
-    const wrapper = {  status:status1,
-                       message:err.message,
-                       response:null};
-    res.status(statusCode).send(wrapper);
-})
-
-
-<<<<<<< HEAD
-
-app.get('/express_backend', (req, res) => { //Line 9
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
-  }); 
 
 app.get('/refresh', async (req,res)=> {
    const CSVsql = `COPY (
@@ -134,8 +97,7 @@ app.get('/refresh', async (req,res)=> {
     
 })
 
-=======
->>>>>>> 0e827af1772040da18d0698719caf833f9af65e3
+
 app.get('/getLinija',async (req, res) => { //Line 9
     
     const sqlQuery = `SELECT * FROM linija;`;
