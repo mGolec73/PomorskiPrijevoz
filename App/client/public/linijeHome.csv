@@ -1,0 +1,18 @@
+oznakalinije,tiplinije,polazište,odredište,stajališta,okružje,vrijemevožnje,cijena,brojpolazakaudanu,dodatansadržaj,opis,nazivbroda,vrstabroda,vlasnikbroda,kapacitet
+9811,lokalna,Dubrovnik,Split,"Vela Luka,Hvar,Bol",Dubrovačko,180,280,8,da,"brzobrodska linija koja polazi iz Dubrovnika na otoke Hvar,Korčulu i Brač",Olea,katamaran,Jadrolinija,218
+9603,lokalna,Split,Jelsa,Bol,Splitsko,90,63,4,da,brzobrodska linija koja polazi iz Splita na otoke Brač i hvar,Silba,katamaran,Jadrolinija,310
+9604,lokalna,Split,Ubli,"Vela Luka, Hvar",Splitsko,185,78,6,da,"brzobrodska linija koja polazi iz Splita na otoke Hvar,Korčulu i Lastovo",Adriana,katamaran,Jadrolinija,356
+9604,lokalna,Split,Ubli,"Vela Luka, Hvar",Splitsko,185,78,6,da,"brzobrodska linija koja polazi iz Splita na otoke Hvar,Korčulu i Lastovo",Judita,katamaran,Jadrolinija,316
+9603,lokalna,Split,Jelsa,Bol,Splitsko,90,63,4,da,brzobrodska linija koja polazi iz Splita na otoke Brač i hvar,Karolina,katamaran,Jadrolinija,316
+635,lokalna,Split,Stari Grad,"",Splitsko,120,55,6,da,trajektna linija koja polazi iz Splita na otok Hvar,Petar Hektorović,trajekt,Jadrolinija,1080
+632,lokalna,Drvenik,Sućuraj,"",Splitsko,35,24,11,ne,trajektna linija koja polazi iz Drvenika na otok Hvar,Laslovo,trajekt,Jadrolinija,150
+632,lokalna,Drvenik,Sućuraj,"",Splitsko,35,24,11,ne,trajektna linija koja polazi iz Drvenika na otok Hvar,Ston,trajekt,Jadrolinija,150
+832,lokalna,Prapratno,Sobra,"",Dubrovačko,45,36,4,ne,trajektna linija koja polazi iz Pelješca na otok Mljet,Hanibal Lucić,trajekt,Jadrolinija,360
+635,lokalna,Split,Stari Grad,"",Splitsko,120,55,6,da,trajektna linija koja polazi iz Splita na otok Hvar,Tin Ujević,trajekt,Jadrolinija,1000
+338,lokalna,Valbiska,Lopar,"",Riječko,80,45,4,da,trajektna linija koja polazi s otoka Krka na otok Rab,Bol,trajekt,Jadrolinija,600
+54,međunarodna,Dubrovnik,Bari,"",Durovačko,600,287,1,da,međunarodna linija koja polazi iz Dubrovnika za Bari,Dubrovnik,trajekt,Jadrolinija,1757
+332,lokalna,Valbiska,Merag,"",Riječko,25,26,13,ne,trajektna linija koja polazi s otoka Krka na otok Cres,Mljet,trajekt,Jadrolinija,616
+338,lokalna,Valbiska,Lopar,"",Riječko,80,45,4,da,trajektna linija koja polazi s otoka Krka na otok Rab,Mljet,trajekt,Jadrolinija,616
+338,lokalna,Valbiska,Lopar,"",Riječko,80,45,4,da,trajektna linija koja polazi s otoka Krka na otok Rab,Cres,trajekt,Jadrolinija,600
+432,lokalna,Biograd,Tkon,"",Zadarsko,20,22,13,ne,trajektna linija koja polazi iz Biograda na otok Pašman,Faros,trajekt,Jadrolinija,650
+60,međunarodna,Split,Ancona,"",Splitsko,570,400,1,da,međunarodna linija koja polazi iz Splita za Anconu,Marko Polo1,trajekt,Jadrolinija,1647

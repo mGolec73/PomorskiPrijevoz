@@ -1,16 +1,22 @@
 
 export async function getLinija(id){
-    return await fetch(`http://localhost:5000/getLinija`,{cors:"no-cors"})
+    return await fetch(`http://localhost:5000/getLinija`)
       .then((response) => response.json())
       .catch((err) => console.log(err.message));
   
-}export async function getBrod(id){
+}
+export async function refresh(){
+  return await fetch(`http://localhost:5000/refresh`)
+    .then((response) => response.json())
+    .catch((err) => console.log(err.message));
+}
+export async function getBrod(id){
     return await fetch(`/getBrod`)
       .then((response) => response.json())
       .catch((err) => console.log(err.message));
   
 }export async function getLinijaWithBoats(id){
-    return await fetch(`http://localhost:5000/getLinijaWithBoats`,{cors:"no-cors"})
+    return await fetch(`http://localhost:5000/getLinijaWithBoats`)
       .then((response) => response.json())
       .catch((err) => console.log(err.message));
   
@@ -25,7 +31,6 @@ export async function exportCSV(filterArray){
 
    await fetch(`http://localhost:5000/createCSVFile`,{
     method: "post",
-    mode: "no-cors",
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json; charset=UTF-8",
@@ -48,7 +53,6 @@ export async function exportJSON(filterArray){
 
    await fetch(`http://localhost:5000/createJSONFile`,{
     method: "post",
-    mode: "no-cors",
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json; charset=UTF-8",
